@@ -8,7 +8,7 @@ function Header() {
         <Link to="/">
           <img
             className="w-[100px] h-[95px]"
-            src="/thai-rest-brand.png"
+            src="/thai-admin-svg.png"
             alt="thai rest logo"
           />
         </Link>
