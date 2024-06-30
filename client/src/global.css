@@ -9,3 +9,11 @@
 .header {
   border-radius: 0 0 10px 10px;
 }
+
+.gradient {
+  @apply bg-gradient-to-tr from-white to-red-200 border-l-[1px] border-b-[1px] border-red-300;
+}
+
+.pageTitle {
+  @apply text-4xl font-bold text-red-500;
+}

@@ -3,7 +3,7 @@ import "../global.css";
 
 function Header() {
   return (
-    <div className="header bg-gradient-to-tr from-white to-red-200 border-l-[1px] border-b-[1px] border-red-300 shadow">
+    <div className="header gradient shadow">
       <div className="max-w-6xl flex items-center justify-between mx-auto p-3">
         <Link to="/">
           <img
