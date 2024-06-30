@@ -2,7 +2,7 @@ import { Button } from "flowbite-react";
 
 function Home() {
   return (
-    <div className="max-w-6xl p-10">
+    <div className="max-w-6xl p-10 mx-auto">
       <section className="m-10">
         <h1 className="text-4xl font-bold text-red-500">
           Thai Rest Controller Page
@@ -18,7 +18,7 @@ function Home() {
           nulla provident quas aliquid earum.
         </p>
         <Button className="w-[120px]" gradientDuoTone="pinkToOrange">
-          Submit
+          Jump to Dashboard
         </Button>
       </section>
     </div>
