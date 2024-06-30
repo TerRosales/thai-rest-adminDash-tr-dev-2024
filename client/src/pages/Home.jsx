@@ -8,7 +8,7 @@ function Home() {
           Thai Rest Controller Page
         </h1>
       </section>
-      <section className="rounded-2xl flex flex-col m-16 p-5 gap-5 bg-gradient-to-tr from-white to-red-200 border-l-[1px] border-b-[1px] border-red-600 shadow">
+      <section className="rounded-2xl flex flex-col m-16 p-5 gap-5 bg-gradient-to-tr from-white to-red-200 border-l-[1px] border-b-[1px] border-red-300 shadow">
         <p className="font-semibold text-red-950">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita est,
           iusto soluta velit saepe labore accusantium totam ipsum ducimus

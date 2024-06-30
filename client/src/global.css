@@ -5,3 +5,7 @@
 .shadow {
   @apply shadow-lg shadow-neutral-200;
 }
+
+.header {
+  border-radius: 0 0 10px 10px;
+}
