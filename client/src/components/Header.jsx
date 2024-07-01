@@ -20,7 +20,7 @@ function Header() {
             <li>Controls</li>
           </Link>
           <Link to="/siginin">
-            <li>Sigin In</li>
+            <li>Sign In</li>
           </Link>
         </ul>
       </div>

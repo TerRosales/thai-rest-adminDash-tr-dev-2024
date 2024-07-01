@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TiInfo } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Alert } from "flowbite-react";
 import "../global.css";
 
@@ -8,6 +8,8 @@ function Signup() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -29,6 +31,7 @@ function Signup() {
         setError(true);
         return;
       }
+      navigate("/signin");
     } catch (error) {
       setLoading(false);
       setError(true);
