@@ -14,8 +14,18 @@ function Signup() {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.password !== confirmPassword) {
+      setError(true);
+      return;
+    }
     try {
       setLoading(true);
       const res = await fetch("/api/auth/signup", {
@@ -37,6 +47,7 @@ function Signup() {
       setError(true);
     }
   };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="pageTitle text-center  my-7">Sign Up</h1>
@@ -62,6 +73,15 @@ function Signup() {
           className="bg-slate-100 p-3 rounded-lg"
           onChange={handleChange}
         />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          className="bg-slate-100 p-3 rounded-lg"
+          onChange={handleConfirmPasswordChange}
+        />
+        {formData.password !== confirmPassword && (
+          <p className="text-red-500">Passwords do not match</p>
+        )}
         <Button
           type="submit"
           gradientDuoTone="pinkToOrange"
