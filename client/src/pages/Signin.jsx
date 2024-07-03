@@ -3,12 +3,18 @@ import { TiInfo } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Alert } from "flowbite-react";
 import "../global.css";
+import {
+  signInStart,
+  signInFailure,
+  signInSuccess,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Signin() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -17,7 +23,7 @@ function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -26,15 +32,14 @@ function Signin() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      setLoading(false);
       if (data.success === false) {
-        setError(true);
+        dispatch(signInFailure(data.message));
         return;
       }
+      dispatch(signInSuccess(data));
       navigate("/dashboard");
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      dispatch(signInFailure(error));
     }
   };
   return (
@@ -74,7 +79,7 @@ function Signin() {
           <div className="flex">
             <TiInfo className="text-3xl text-yellow-300 bg-black rounded-lg" />
             <Alert color="red" className="text-black text-md font-semibold p-1">
-              Something Went Wrong, Please Contact Your Manager
+              {error || "Something went wrong"}
             </Alert>
           </div>
         )}

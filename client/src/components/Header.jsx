@@ -19,7 +19,7 @@ function Header() {
           <Link to="/controls">
             <li>Controls</li>
           </Link>
-          <Link to="/siginin">
+          <Link to="/signin">
             <li>Sign In</li>
           </Link>
         </ul>
