@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { TiInfo } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Alert } from "flowbite-react";
+import OAuth from "../components/OAuth";
 import "../global.css";
 
 function Signup() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -14,16 +16,19 @@ function Signup() {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const [confirmPassword, setConfirmPassword] = useState("");
-
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    if (formData.password !== e.target.value) {
+      setError("Passwords do not match");
+    } else {
+      setError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== confirmPassword) {
-      setError(true);
+      setError("Passwords do not match");
       return;
     }
     try {
@@ -38,19 +43,19 @@ function Signup() {
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
-        setError(true);
+        setError("Something went wrong, please try again");
         return;
       }
       navigate("/signin");
     } catch (error) {
       setLoading(false);
-      setError(true);
+      setError("Something went wrong, please try again");
     }
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="pageTitle text-center  my-7">Sign Up</h1>
+    <div className="p-3 max-w-lg mx-auto mt-16">
+      <h1 className="pageTitle text-center my-7">Sign Up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="text"
@@ -77,41 +82,42 @@ function Signup() {
           type="password"
           placeholder="Confirm Password"
           className="bg-slate-100 p-3 rounded-lg"
+          value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        {formData.password !== confirmPassword && (
-          <p className="text-red-500">Passwords do not match</p>
-        )}
+        {error && <p className="text-red-500">{error}</p>}
         <Button
           type="submit"
           gradientDuoTone="pinkToOrange"
-          className="bg-red-400 text-white rounded-lg w-[200px] self-center"
+          className="bg-red-400 text-white rounded-lg w-[250px] h-[45px] self-center"
         >
           {loading ? "Loading..." : "Sign Up"}
         </Button>
+        <OAuth />
+        <div className="flex my-4 mx-auto">
+          <p>Have an account?&nbsp;</p>
+          <Link to="/signin">
+            <span className="text-blue-500">Sign In</span>
+          </Link>
+        </div>
       </form>
-      <div className="flex my-4">
-        <p>Have an account?&nbsp;</p>
-        <Link to="/signin">
-          <span className="text-blue-500">Sign In</span>
-        </Link>
-      </div>
-      <section className="gradient p-4 rounded-2xl  shadow flex flex-col my-5 items-center">
-        {error && (
+
+      <section className="gradient p-4 rounded-2xl shadow flex flex-col my-12 items-center">
+        {error && error !== "Passwords do not match" && (
           <div className="flex">
             <TiInfo className="text-3xl text-yellow-300 bg-black rounded-lg" />
             <Alert color="red" className="text-black text-md font-semibold p-1">
-              Something Went Wrong, Please Contact Your Manager
+              {error}
             </Alert>
           </div>
         )}
         <div className="flex">
           <TiInfo className="text-3xl text-red-500" />
-          <p className="font-semibold  p-1">Company Personels Only</p>
+          <p className="font-semibold p-1">Company Personnel Only</p>
         </div>
         <div className="flex">
           <TiInfo className="text-3xl text-red-500" />
-          <p className="font-semibold  p-1">
+          <p className="font-semibold p-1">
             Contact Manager for Authorization Steps
           </p>
         </div>

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { TiInfo } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Alert } from "flowbite-react";
-import "../global.css";
+import OAuth from "../components/OAuth";
 import {
   signInStart,
   signInFailure,
   signInSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import "../global.css";
 
 function Signin() {
   const [formData, setFormData] = useState({});
@@ -43,7 +44,7 @@ function Signin() {
     }
   };
   return (
-    <div className="p-3 max-w-lg mx-auto">
+    <div className="p-3 max-w-lg mx-auto mt-16">
       <h1 className="pageTitle text-center  my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
@@ -63,18 +64,20 @@ function Signin() {
         <Button
           type="submit"
           gradientDuoTone="pinkToOrange"
-          className="bg-red-400 text-white rounded-lg w-[200px] self-center"
+          className="bg-red-400 text-white rounded-lg w-[250px] h-[45px] self-center"
         >
           {loading ? "Loading..." : "Sign In"}
         </Button>
+        <OAuth />
+        <div className="flex my-4 mx-auto">
+          <p>Don&apos;t have an account?&nbsp;</p>
+          <Link to="/signup">
+            <span className="text-blue-500">Sign Up</span>
+          </Link>
+        </div>
       </form>
-      <div className="flex my-4">
-        <p>Don&apos;t have an account?&nbsp;</p>
-        <Link to="/signup">
-          <span className="text-blue-500">Sign Up</span>
-        </Link>
-      </div>
-      <section className="gradient p-4 rounded-2xl  shadow flex flex-col my-5 items-center">
+
+      <section className="gradient p-4 rounded-2xl  shadow flex flex-col my-12 items-center">
         {error && (
           <div className="flex">
             <TiInfo className="text-3xl text-yellow-300 bg-black rounded-lg" />
@@ -83,7 +86,7 @@ function Signin() {
             </Alert>
           </div>
         )}
-        <div className="flex">
+        <div className="flex ">
           <TiInfo className="text-3xl text-red-500" />
           <p className="font-semibold  p-1">Company Personels Only</p>
         </div>
