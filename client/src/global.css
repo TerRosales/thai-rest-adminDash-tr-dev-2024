@@ -17,3 +17,7 @@
 .pageTitle {
   @apply text-4xl font-bold text-red-500;
 }
+
+.formInput {
+  @apply bg-slate-100 p-3 rounded-lg;
+}

@@ -49,22 +49,22 @@ function Signin() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Email Address"
           id="email"
-          className="bg-slate-100 p-3 rounded-lg"
+          className="formInput"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Password"
           id="password"
-          className="bg-slate-100 p-3 rounded-lg"
+          className="formInput"
           onChange={handleChange}
         />
         <Button
           type="submit"
           gradientDuoTone="pinkToOrange"
-          className="bg-red-400 text-white rounded-lg w-[250px] h-[45px] self-center"
+          className="text-white rounded-lg w-[250px] h-[45px] self-center"
         >
           {loading ? "Loading..." : "Sign In"}
         </Button>

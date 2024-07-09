@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../global.css";
 
 function Header() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <div className="header gradient shadow">
       <div className="max-w-6xl flex items-center justify-between mx-auto p-3">
@@ -12,16 +14,26 @@ function Header() {
             alt="thai rest logo"
           />
         </Link>
-        <ul className="flex gap-4">
+        <ul className="flex text-xl font-semibold gap-4 items-center">
           <Link to="/">
             <li>Home</li>
           </Link>
-          <Link to="/controls">
-            <li>Controls</li>
-          </Link>
-          <Link to="/signin">
+          {currentUser ? (
+            <>
+              <Link to="/dashboard">
+                <li>Dashboard</li>
+              </Link>
+              <Link to="/profile">
+                <img
+                  src={currentUser.profilePicture}
+                  alt="profile picture"
+                  className="h-12 m-12 rounded-full object-cover"
+                />
+              </Link>
+            </>
+          ) : (
             <li>Sign In</li>
-          </Link>
+          )}
         </ul>
       </div>
     </div>
