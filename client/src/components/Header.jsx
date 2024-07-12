@@ -14,7 +14,7 @@ function Header() {
             alt="thai rest logo"
           />
         </Link>
-        <ul className="flex text-xl font-semibold gap-4 items-center">
+        <ul className="flex text-md font-semibold gap-4 items-center">
           <Link to="/">
             <li>Home</li>
           </Link>
@@ -27,7 +27,7 @@ function Header() {
                 <img
                   src={currentUser.profilePicture}
                   alt="profile picture"
-                  className="h-12 m-12 rounded-full object-cover"
+                  className="h-12 rounded-full object-cover p-0 m-0"
                 />
               </Link>
             </>

@@ -90,12 +90,6 @@ function Signin() {
           <TiInfo className="text-3xl text-red-500" />
           <p className="font-semibold  p-1">Company Personels Only</p>
         </div>
-        <div className="flex">
-          <TiInfo className="text-3xl text-red-500" />
-          <p className="font-semibold  p-1">
-            Contact Manager for Authorization Steps
-          </p>
-        </div>
       </section>
     </div>
   );

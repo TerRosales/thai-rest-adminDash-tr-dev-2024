@@ -85,7 +85,7 @@ function Signup() {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <Alert color="red">{error}</Alert>}
         <Button
           type="submit"
           gradientDuoTone="pinkToOrange"
